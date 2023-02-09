@@ -33,7 +33,8 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     surname = Column(String(250), nullable=False)
-    password = Column(Complex, nullable=False)
+    password = Column(String, nullable=False)
+    favorites = relationship("Favorites", backref="user", lazy=True)
 
     def to_dict(self):
         return {}
@@ -49,6 +50,7 @@ class Planets(Base):
     height = Column(Integer)
     gender = Column(String(250))
     mass = Column(Integer)
+    favorites = relationship("Favorites", backref="planets", lazy=True)
 
     def to_dict(self):
         return {}
@@ -63,6 +65,7 @@ class Character(Base):
     population = Column(Integer)
     orbital_period = Column(Integer)
     diameter = Column(Integer)
+    favorites = relationship("Favorites", backref='character', lazy=True)
 
     def to_dict(self):
         return {}
@@ -72,12 +75,10 @@ class Favorites(Base):
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
     planets_id = Column(Integer, ForeignKey('planets.id'))
-    planets = relationship(Planets)
     character_id = Column(Integer, ForeignKey('character.id'))
-    Character = relationship(Character)
-    
-
+ 
     def to_dict(self):
         return {}
 
