@@ -39,8 +39,8 @@ class User(Base):
     def to_dict(self):
         return {}
 
-class Planets(Base):
-    __tablename__ = 'planets'
+class Character(Base):
+    __tablename__ = 'character'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
@@ -55,8 +55,8 @@ class Planets(Base):
     def to_dict(self):
         return {}
 
-class Character(Base):
-    __tablename__ = 'character'
+class Planets(Base):
+    __tablename__ = 'planets'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
